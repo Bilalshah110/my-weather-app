@@ -16,7 +16,7 @@ function Weather({
   return (
     <div>
       <div className="app py-4">
-        <div className="container-fluid">
+        <div className="container">
           <input
             type="text"
             placeholder="Enter a city name"
