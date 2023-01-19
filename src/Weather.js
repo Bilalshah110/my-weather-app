@@ -1,5 +1,6 @@
 import React from "react";
 import { GiCancel } from "react-icons/gi";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 
 function Weather({
   loading,
@@ -143,7 +144,8 @@ function Weather({
           ) : (
             //ABOUT
             <div className="mid container">
-              <h2>My Weather App</h2>
+              <TiWeatherPartlySunny style={{fontSize: '2rem'}}/>
+              <h2>Weather by Bilal</h2>
               <h6>
                 Developed by&nbsp;
                 <a
