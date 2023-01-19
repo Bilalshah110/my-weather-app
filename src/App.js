@@ -13,7 +13,7 @@ function App() {
 
   // CHECK WHETHER ENTER IS PRESSED OR NOT
   const enterPressed = (e) => {
-    return e.code === "Enter" ? setEnter(true) : setEnter(false);
+    return e.keyCode === 13 ? setEnter(true) : setEnter(false);
   };
 
   // FUNCTION TO FETCH DATA FROM API
