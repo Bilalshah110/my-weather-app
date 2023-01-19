@@ -11,10 +11,12 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [enter, setEnter] = useState(false);
 
+  // CHECK WHETHER ENTER IS PRESSED OR NOT
   const enterPressed = (e) => {
     return e.code === "Enter" ? setEnter(true) : setEnter(false);
   };
 
+  // FUNCTION TO FETCH DATA FROM API
   const checkWeather = (city, enter) => {
     const options = {
       method: "GET",
@@ -29,18 +31,20 @@ function App() {
       if (city.length === 0) {
         setInputError("Please enter a city");
         setSearchError();
+        setEnter(false);
       } else if (city.length < 3) {
         setInputError("City can not be less than 3 letters");
+        setEnter(false);
         setSearchError();
       } else {
         setLoading(true);
+        setInputError();
         axios
           .request(options)
           .then((response) => {
             setLoading(false);
             setData(response.data);
             setSearchError();
-            setInputError();
             setCity("");
             setEnter(false);
           })
@@ -49,8 +53,8 @@ function App() {
             error.response
               ? setSearchError(`No city found with name "${city}"`)
               : setSearchError("Please check your internet connection");
-            setInputError();
             setData();
+            setEnter(false);
           });
       }
     }
@@ -69,7 +73,6 @@ function App() {
         setInputError={setInputError}
         searchError={searchError}
         setSearchError={setSearchError}
-        setEnter={setEnter}
         city={city}
         setCity={setCity}
         enterPressed={enterPressed}

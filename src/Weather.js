@@ -26,6 +26,8 @@ function Weather({
           />
 
           <br />
+
+          {/* INPUT ERROR MESSAGE */}
           {inputError ? (
             <div className="d-flex justify-content-between input-error align-items-center">
               <div>{inputError}</div>
@@ -35,6 +37,7 @@ function Weather({
             </div>
           ) : null}
 
+          {/* SEARCHING DIV */}
           {loading ? (
             <div className="mid container">
               <div
@@ -44,7 +47,8 @@ function Weather({
               ></div>
               <h4>Searching...</h4>
             </div>
-          ) : data ? (
+          ) : // WEATHER DATA
+          data ? (
             <div className="mt-3">
               <div className="location">
                 <p>{data.location.name}</p>
@@ -55,6 +59,7 @@ function Weather({
               <h1>{Math.round(data.current.temp_c)}°C</h1>
               <p>{data.current.condition.text}</p>
 
+              {/* 3 DAYS FORECAST */}
               <div className="my-container my-3">
                 {data.forecast.forecastday.map((day, i) => {
                   const date = new Date(day.date);
@@ -86,19 +91,22 @@ function Weather({
                   );
                 })}
               </div>
-              <div className="">
+              <div>
+                {/* HOURLY FORECAST DATA*/}
                 <div className="container-fluid d-flex justify-content-between hourly-forecast py-3">
                   {data.forecast.forecastday[0].hour.map((hour, i) => {
                     var time = hour.time.split(" ")[1];
                     return (
                       <div key={i} className="text-center me-3">
-                        <small className="">{time}</small>
+                        <small>{time}</small>
                         <p>{Math.round(hour.temp_c)}°</p>
                       </div>
                     );
                   })}
                 </div>
               </div>
+
+              {/* OTHER DETAILS */}
               <div className="d-flex justify-content-between my-container mt-4">
                 <div>
                   <small>Feels like</small>
@@ -121,7 +129,8 @@ function Weather({
                 </div>
               </div>
             </div>
-          ) : searchError ? (
+          ) : // CITY NOT FOUND ERROR
+          searchError ? (
             <div className="mid container">
               <div>
                 <GiCancel
@@ -132,6 +141,7 @@ function Weather({
               <h4>{searchError}</h4>
             </div>
           ) : (
+            //ABOUT
             <div className="mid container">
               <h2>My Weather App</h2>
               <h6>
@@ -148,8 +158,10 @@ function Weather({
           )}
         </div>
       </div>
+
+      {/* FOOTER */}
       <div className="footer">
-        ©&nbsp;
+      Copyright © 2023&nbsp;
         <a
           href="https://bilalhassan.netlify.app/"
           target="_blank"
